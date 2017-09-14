@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="netflix">
+	<head>
+		<title>Netflix Mock</title>
+		<!-- 	<link rel="stylesheet" href="""> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<link rel="shortcut icon" type="image/x-icon" href="images/netflix.png" />
+		<script src="js/app.js"></script>
+		
+	</head>
+	<body ng-controller="NetFlixController" ng-click="clearEditing()">
+		<h1>NetFlix</h1>
+		<br/>
+		<h2>My List:</h2>
+		<div ng-repeat="list in myList" class="mylist" ng-mouseover="func1(list.title)" ng-mouseout="func2(list.title)">
+			<h4  class="editable" ng-hide="list.editable" ng-dblclick="editTitle(list)">{{list.title}}</h4>
+			<form ng-submit="doneEditing(list)" ng-show="list.editable">
+              <input class="editable" ng-model="list.title">
+          	</form>
+			<img ng-src="{{list.img}}" alt="{{list.title}}"/><br/>
+			<button value="{{list.title}}" id="{{list.title}}" ng-click="removeFromMyList($index)">Remove</button>
+		</div>
+		<p style="clear:both"></p>
+		<br/>
+		<h2>Recommendations:</h2>
+		<div ng-repeat="recom in recommendations" class="recommendation" ng-mouseover="func1(recom.title)" ng-mouseout="func2(recom.title)">
+			<h4 class="editable" ng-hide="recom.editable" ng-dblclick="editTitle(recom)">{{recom.title}}</h4>
+			<form ng-submit="doneEditing(recom)" ng-show="recom.editable">
+              <input class="editable" ng-model="recom.title">
+          	</form>
+			<img ng-src="{{recom.img}}" alt="{{recom.title}}" /><br/>
+			<button value="{{recom.title}}" id="{{recom.title}}" ng-click="addToMyList($index)" class="but">Add</button>
+		</div>
+		<p style="clear:both"></p>
+		<h3>My List:</h3>
+		<ul>
+			<li ng-repeat="list in myList">
+				{{list.title}}
+			</li>
+		</ul>
+	</body>
+	<style>
+		body{
+			margin:auto;
+			width:60%;
+		}
+		h1{
+			background-color:red;
+			text-color:black;
+			text-align:center;
+			margin:0px;
+			margin-top:5px
+		}
+		h4{
+			text-align:center;
+			font-weight:bold;
+			font-family:Arial;
+		}
+		.mylist{
+			display:inline;
+			float : left;
+			margin:15px;
+			height:200px;
+			margin-top:0px;
+		}
+		.recommendation{
+			display:inline;
+			float : left;
+			margin:15px;
+			height:230px;
+			margin-top:0px;
+			
+			
+		}
+		.mylist img,.recommendation img{
+			width:100px;
+		}
+		button{
+			display:none;
+			margin-left:18px
+		}
+		button.but{
+			display:none;
+			margin-left:28px
+		}
+		input{
+			margin:10px;
+			height:20px;
+			width:90px
+		}
+		</style>
+</html>
