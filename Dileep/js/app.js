@@ -4,7 +4,8 @@ module.controller('NetFlixController',function($scope,DataService){
 		$scope.recommendations = DataService.mockData["recommendations"];
 		DataService.clearEditing($scope.myList,$scope.recommendations);
 		$scope.removeFromMyList = function(index){
-			$scope.myList.splice(index,1);
+			var item = $scope.myList.splice(index,1);
+			$scope.recommendations.push(item);
 		};
 		$scope.addToMyList = function(index){
 			$scope.myList.push($scope.recommendations[index]);
