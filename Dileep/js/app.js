@@ -5,7 +5,7 @@ module.controller('NetFlixController',function($scope,DataService){
 		DataService.clearEditing($scope.myList,$scope.recommendations);
 		$scope.removeFromMyList = function(index){
 			var item = $scope.myList.splice(index,1);
-			$scope.recommendations.push(item);
+			$scope.recommendations.push(item[0]);
 		};
 		$scope.addToMyList = function(index){
 			$scope.myList.push($scope.recommendations[index]);
